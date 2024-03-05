@@ -1,9 +1,9 @@
 # Machine Vision Introduction
 
-* <span style="color:red"> 붉은 영역은 question </span>
-* <span style="color:blue"> 푸른 영역은 answer </span>
+* <span style="color:red"> Q = question </span>
+* <span style="color:blue"> A = answer </span>
 
-## Introduction
+## 1. Introduction
 ### Process
 1. Imaging
 2. Processing and analysis
@@ -30,7 +30,7 @@
    - 3D Camera : calibrated 3D 모양 데이터를 수집하여 컴퓨터로 전송.
    - Multiscan Camera : 하나의 카메라 유닛이 여러개의 스캔을 동시에 수행, 2d grayscale과 3D 이미지를 한 스캔에 수행.
 
-## Imaging
+## 2. Imaging
 ### Technical names
 1. Acquiring
 2. Capturing
@@ -58,10 +58,10 @@
 * Angle of view : 카메라가 얼마만큼이나 볼 수 있는지?
     - wide angle : 더 큰 부분의 화면을 봄.
     - small angle of view of tele lens : 먼거리에서 자세히 볼 수 있다.
-    - <span style="color:red"> 해당 그림에서 초록 영역, 푸른 영역과 적색 영역이 해당 화각에 맞는 FOV다? </span>
-    - <span styel="color:blue"> 맞음 </span>
-    - <span style="color:red"> angle of view가 크면 angle of view 작은 것보단 자세(detail)하게 못 보는 것인가? </span>
-    - <span style="color:blue"> 맞음, angle of view가 크면 더 큰 범위 이미지를 얻는 것, angle of view가 작으면 더 작은 범위의 이미지를 얻는 법, 하지만 각 경우에서 센서는 동일하기 때문에 같은 부분을 볼 때 큰 angle of view에서의 detail 함은 당연히 작은 곳을 보는 것보다(작은 부분이지만 같은 부분을 기준으로 보면 전체를 보는 것) detail이 떨어진다. </span>
+    - <span style="color:red"> Q. 해당 그림에서 초록 영역, 푸른 영역과 적색 영역이 해당 화각에 맞는 FOV다? </span>
+    - <span styel="color:blue"> A. 맞음 </span>
+    - <span style="color:red"> Q. angle of view가 크면 angle of view 작은 것보단 자세(detail)하게 못 보는 것인가? </span>
+    - <span style="color:blue"> A. 맞음, angle of view가 크면 더 큰 범위 이미지를 얻는 것, angle of view가 작으면 더 작은 범위의 이미지를 얻는 법, 하지만 각 경우에서 센서는 동일하기 때문에 같은 부분을 볼 때 큰 angle of view에서의 detail 함은 당연히 작은 곳을 보는 것보다(작은 부분이지만 같은 부분을 기준으로 보면 전체를 보는 것) detail이 떨어진다. </span>
 * Sensor에 맺히는게 focal point(초점)
 * Focal length : 렌즈와 초점 사이의 거리
     - 초점이 센서에 있을 경우, 이미지가 초점이 맞음.
@@ -85,11 +85,11 @@
 * 큰 조리개는 좁은 depth of field를 부여, 반대도 마찬가지.
 * = 좁은 조리개는 빛이 통과하는 길목이 좁아지므로 Sensor에 맺히는 상이 더욱 명확해짐(빛이 갈수 있는 범위가 줄어드므로)
 
-  <span style="color:red"> 밑의 내용이 맞냐? </span>
+  <span style="color:red"> Q. 밑의 내용처럼 모든 feature 들이 서로 연관되는가? </span>
 * 긴 focal length = 좁은 angle of view = 작은 field of view = 얕은 depth of field
 * 짧은 focal length  = 넓은 angle of view = 큰 field of view = 깊은 depth of field
   
-  <span style="color:blue"> 맞음 </span>
+  <span style="color:blue"> A. 맞음 </span>
 
 #### Distance ring 추가
 * 카메라와 렌즈 사이에 distance ring을 넣어서 focal plane를 카메라와 가깝게 이동 가능(minimum object distance를 줄이기 때문). distance ring은 shim, spacer, extension ring이라 부름.
@@ -142,7 +142,7 @@
 * 높은 contrast(잘표현하는 contrast) 단계에서는 연속적인 데이터 분포를 나타내는 histogram이 나오는 반면 contrast를 낮출 경우 histogram은 좁게 표현된다(다양하지 않게).
 * (물론 기본적으로 pic sample이 여러 색(grayscale)을 가져야한다.)
 
-## Illumination(조도)
+## 3. Illumination(조도)
 
 * 머신 비전에서 빛은 매우 중요하여 강직한 어플리케이션을 목표로 한다.
     1. 관측되는 특징들을 강화
@@ -270,8 +270,8 @@
 * 레이저 광선은 prism(프리즘)을 통해 laser line으로 나뉘게 된다.
 * view angle은 카메라가 물체의 cross-section(단면)에 해당하는 height profile을 보게 만든다.
 * 전체적인 3D 이미지를 얻기위해서 레이저 밑으로 물체를 이동시키면서 많은 연속된 profile을 합친다.
-* <span style="color:red"> Camera의 역할이 그럼 laser line을 쏘아 오브젝트의 단면을 나타내는 선을 구하는 것? 그렇다면 angle이 레이저와 다른 이유? </span>
-* <span style="color:blue"> 해당 내용과 관련하여 각도로 인해 물체의 뒷부분을 보지 못하는 내용을 밑에 Occlusion and Missing Data에서 나온다 </span>
+* <span style="color:red"> Q. Camera의 역할이 그럼 laser line을 쏘아 오브젝트의 단면을 나타내는 선을 구하는 것? 그렇다면 angle이 레이저와 다른 이유? </span>
+* <span style="color:blue"> Self A. 해당 내용과 관련하여 각도로 인해 물체의 뒷부분을 보지 못하는 내용을 밑에 Occlusion and Missing Data에서 나온다 </span>
 
 ### Field of View in 3D
 * Selected FOV은 카메라가 물체의 단면적을 보는 네모 영역이다.
@@ -333,6 +333,6 @@
 * 설치는 covered 또는 shrouded 되야한다.(3장 illumination에서 나온 내용)
 * 일반적으로, 반사와 관련된 문제는 태양광과 spotlight에서 나오는 따뜻한 인공적인 빛에서 비롯됩니다.
 
-## Processing and Analysis
+## 5. Processing and Analysis
 
 * Chapter 4~5을 디테일하게 6~7은 간단히.
