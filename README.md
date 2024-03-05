@@ -1,5 +1,8 @@
 # Machine Vision Introduction
 
+* <span style="color:red"> 붉은 영역은 question </span>
+* <span style="color:blue"> 푸른 영역은 answer </span>
+
 ## Introduction
 ### Process
 1. Imaging
@@ -55,6 +58,11 @@
 * Angle of view : 카메라가 얼마만큼이나 볼 수 있는지?
     - wide angle : 더 큰 부분의 화면을 봄.
     - small angle of view of tele lens : 먼거리에서 자세히 볼 수 있다.
+    - <span style="color:red"> 해당 그림에서 초록 영역, 푸른 영역과 적색 영역이 해당 화각에 맞는 FOV다? </span>
+    - <span styel="color:blue"> 맞음 </span>
+    - <span style="color:red"> angle of view가 크면 angle of view 작은 것보단 자세(detail)하게 못 보는 것인가? </span>
+    - <span style="color:blue"> 맞음, angle of view가 크면 더 큰 범위 이미지를 얻는 것, angle of view가 작으면 더 작은 범위의 이미지를 얻는 법, 하지만 각 경우에서 센서는 동일하기 때문에 같은 부분을 볼 때 큰 angle of view에서의 detail 함은 당연히 작은 곳을 보는 것보다(작은 부분이지만 같은 부분을 기준으로 보면 전체를 보는 것) detail이 떨어진다. </span>
+* Sensor에 맺히는게 focal point(초점)
 * Focal length : 렌즈와 초점 사이의 거리
     - 초점이 센서에 있을 경우, 이미지가 초점이 맞음.
     - Angle of view와 연관있으며 긴 초점 거리는 작은 angle of view를 가지며, 반대도 마찬가지.
@@ -75,7 +83,15 @@
 * focal plane : 초점이 가장 선명해지는 거리, depth of field의 안에만 있어도 초점이 충분히 좋다.
 * 긴 focal length는 좁은 depth of field를 부여, 반대도 마찬가지.
 * 큰 조리개는 좁은 depth of field를 부여, 반대도 마찬가지.
+* = 좁은 조리개는 빛이 통과하는 길목이 좁아지므로 Sensor에 맺히는 상이 더욱 명확해짐(빛이 갈수 있는 범위가 줄어드므로)
 
+  <span style="color:red"> 밑의 내용이 맞냐? </span>
+* 긴 focal length = 좁은 angle of view = 작은 field of view = 얕은 depth of field
+* 짧은 focal length  = 넓은 angle of view = 큰 field of view = 깊은 depth of field
+  
+  <span style="color:blue"> 맞음 </span>
+
+#### Distance ring 추가
 * 카메라와 렌즈 사이에 distance ring을 넣어서 focal plane를 카메라와 가깝게 이동 가능(minimum object distance를 줄이기 때문). distance ring은 shim, spacer, extension ring이라 부름.
 * 굵은 distnace ring을 extension tube라 부름. 이를 통해 기본 렌즈에 확대 효과 부여 가능.
 * Maximum Object distance가 결정되고 depth of field의 범위가 줄어듬.
@@ -89,6 +105,7 @@
     1. VGA(Video Graphics Array) : 640x480 pixels
     2. XGA(Extended Graphics Array) : 1024x768 pixels
     3. SXGA(Super Extended Graphics Array) : 1280x1024 pixels
+* x,y 좌표의 경우 y와 좌표 방향은 밑으로 향한다(수학계 좌표와 다름)
 * Object resolution : 센서의 한 픽셀에 해당하는 물체의 물리적인 거리. object resolution을 위한 주 unit은 micros per pixel 과 mm per pixel이다.
 * 몇 측정에서는 해상도가 픽셀보다 작아질 수 있다.
 * 픽셀 데이터의 서프픽셀 정보를 추출하는 보간 알고리즘에 의해 정해짐.
@@ -117,7 +134,7 @@
 * 이미 노출된 이미지의 intensity 조정을 위해 신호 값을 증폭하는 방법이 gain.
 * 하지만 신호와 동시에 noise도 증폭시키는 특징이 있음.
 
-### Contrast and Histogram
+### Contrast and Histogram(대비와 히스토그램)
 * 대비는 흰 곳과 밝은 곳의 상대적인 차이. 이미지 안의 모든 것들을 한번에 잘 보기위해 조정.
 * 히스토그램 : 픽셀들을 intensity의 세기에 맞춰서 분포도를 만든 것.
 * 컬러에서 히스토그램은 gray scale과 동일하게 작동하나, 각각의 컬러 채널이 각각의 histogram으로 표현된다.
@@ -141,6 +158,7 @@
   2. Intensity(밝기)
   3. Polarization(매질의 진동이 모든 방향에 대해 같지 않은 상태)
 * 주로 파장과 Intensity가 머신비전에 주로 중요하며 Polarization(편광)은 특수한 경우에 해당한다.
+* Polarization(편광) : 전자기파가 진행할 때 파를 구성하는 전기장 또는 자기장이 특정한 방향으로 진동
 * 다른 파장은 다른 색으로 나타낸다. 사람의 눈은 가시광선 내의 색만 볼 수 있으며, 보라부터 적색까지다. 보라색보다 짧은 파장을 가지는 빛을 UV(ultraviolet), 자외선이라 하며(400nm 미만) 적색보다 더 긴 파장을 가지는 빛을 IR(infrared), 적외선이라 한다(700nm 초과).
 * 센서의 Spectral response(스펙트럼 응답)은 다른 파장에 따른 민감도 곡선이다. 카메라 센서는 사람 눈이랑 다른 스펙트럼 응답을 가질 수 있다.
 * (사람은 낮시간에 555nm에서 가장 높은 스펙트럼 응답을 가지는 반면,IVC-2D내 센서의 스펙트럼 응답은 500 nm에서 가장 높은 수치를 가진다.)
@@ -227,7 +245,7 @@
 1. band-pass filter : 특정 색의 빛만 통과시킨다(예를 들어 특정 파장 간격)
 2. Polarization filter : 특정 편광의 빛만 통과시킨다. 원하지 않는 반사는 거르기 위함.
 
-### Safety and Eye protection
+### Safety and Eye protection   
 * 빛의 세기가 강할 경우 위험할 수 있다. 특히 레이저의 경우나 가끔의 LED에서.
 * 광원을 사용전에 안전 분류를 해놓아야 한다.
 ㅉ
@@ -240,10 +258,81 @@
 * LED의 빛의 세기가 높으면 위험하지만 따로 단계로 나누지는 않는다.
 * LED는 strobe light(점멸 빛)에 사용되며 간질 발작을 유발할 수 있다.
 
-
 #### 3D imaging technology
 1. TOF(Time of Flight)
   * 신호를 이용하여 사물을 거리를 측정하는 기술
 2. Struted light
 3. Laser triangulation : 4장에 나옴
 4. Stereo vision
+
+## Laser Triangulation
+* 레이저 삼각화는 물체를 한 방향으로 레이저를 비추고 다른 방향에서 카메라로 관측하여 3D 높이 데이터를 얻는 기술이다.
+* 레이저 광선은 prism(프리즘)을 통해 laser line으로 나뉘게 된다.
+* view angle은 카메라가 물체의 cross-section(단면)에 해당하는 height profile을 보게 만든다.
+* 전체적인 3D 이미지를 얻기위해서 레이저 밑으로 물체를 이동시키면서 많은 연속된 profile을 합친다.
+* <span style="color:red"> Camera의 역할이 그럼 laser line을 쏘아 오브젝트의 단면을 나타내는 선을 구하는 것? 그렇다면 angle이 레이저와 다른 이유? </span>
+* <span style="color:blue"> 해당 내용과 관련하여 각도로 인해 물체의 뒷부분을 보지 못하는 내용을 밑에 Occlusion and Missing Data에서 나온다 </span>
+
+### Field of View in 3D
+* Selected FOV은 카메라가 물체의 단면적을 보는 네모 영역이다.
+* Selected FOV는 defining rectangle이라 불리며 사다리꼴 모양의 최대 FOV 내부에 있습니다.
+* 기본 기하학에서 카메라 유닛과 FOV의 top 사이의 거리를 stand-off라 한다.
+* FOV의 가능한 너비는 렌즈의 focal length, 레이저 prism의 fan angle, stand-off에 의해 결정된다.
+* 레이저 선의 Fan angle은 최대 FOV의 사다리꼴 형태를 만들며, 여기서 selected FOV는 카메라가 그 시간에 보는 단면으로 정의한다. 
+* 레이저는 프리즘에 의해 삼각형의 형태로 나온다 그 삼각형에서 카메라에 의해 관측되는 부분들과 단면적이 나오는 부분들을 정리해놓은 그림.
+
+### 3D Image and Coordinate System
+* 여러 방식의 3D data 표현 방법이 있다. SICK IVP는 intensity-codede hegiht 데이터를 사용하며 밝은 부분이 높고 어두운 부분이 낮다. color를 적용한 높이 데이터를 구축할 수 도 있다.
+* 3D image는 2D에서 x는 그대로고 y는 시간에 따르고 z는 새롭게 추가되는 높이 축 또는 범위축이라 볼 수 있다.
+
+### Scanning Speed
+* 레이저 삼각법은 선 스캐닝 방법이라 이미지가 조금씩 조금씩 잡히므로 스캔하는 동안 물체가 제어된 방식으로 움직이는 것이 중요하다.
+* 두가지 중 하나의 방법으로 가능하다.
+1. encoder가 각 시간마다 신호를 줘서 컨베이어가 일정 거리를 움직인다.
+2. 일정한 컨베이어 속도.
+* Encoder가 사용될 때, profile triggering을 조절하여 profile이 등거리에 있게 된다.
+* 일정한 컨베이어 속도는 자주 보장되지 않을 수 있어, encoder 방식이 추천된다.
+* profile 잡는 것을 수행하는 것에 최대 속도가 있음을 알아야 하며 maximum profile rate(profiles/second)에 결정된다.
+* 만약 속도나 최대 profile rate를 넘기게 되면, encoder를 사용해도 불구하고 몇 profile이 손실되고 이미지가 왜곡된다.
+* 왜곡된 이미지는 물체의 비율이 맞지않다.
+* 해상도 최적화 과정에서 x와 y의 해상도가 맞지않는 다른 경우에도 이미지가 왜곡된다.
+  
+* 최대 profile rate는 3가지 주요 요인에 의해 결정된다.
+  1. 센서의 노출도 : profile마다 긴 노출 시간을 가지면 maximum profile rate가 줄어든다.
+  2. sensor read-out time : 센서의 데이터에서 디지털 형식으로 변환(calibration인가?)
+  3. data transfer rate : 3D data에서 신호 처리 장비로 걸리는 시간
+
+* 물체 전체가 스캔 되었음을 보장하기 위해서는, photo switch를 사용하여 정확한 시간에 수집해야 한다. 즉 photo switch는 image triggering에 사용된다.
+* 컨베이어에서 더 많은 연속적인 흐름이 위치하는 어플리케이션에서 photo swtich로 스캔하는게 의미가 없다.
+* 대신, 카메라가 free-running 모드에 사용되고 이것은 새로운 이미지의 수집이 그 전 이미지가 완료되자마자 시작하는 것이다.
+* 가끔, 컨베이어 위 모든 것이 스캔되고 분석되는 것을 보장하기 위해 overlapping image(이미지 겹침) 필수적이다.
+
+### Occlusion and Missing Data
+* 레이저와 카메라의 각도 차이로 인해 카메라가 물체의 뒷부분을 보지못한다.
+* 이런 현상을 camera occlusion(shadowing)이라 하며 이미지에서 데이터 손실을 발생시킨다.
+* 결국, 레이저 삼각화는 높은 feature 뒤의 물체를 스캐닝하는 곳에 적합하지 않다.(예 구멍의 바닥 또는 가파른 모서리)
+* (그림상에서 레이저로 인해 오브젝트 위에 생성되는 붉은 선이 오브젝의 고저차 특징으로 의해 카메라의 시선에서 가려지는 문제를 뜻하는 듯?)
+* 레이저의 fan angle(프리즘으로 의해 벌어지는 각) 때문에, 레이저 라인은 가려질 수 있고(occluded) 이는 데이터 손실이며 이 현상이 laser occlusion이라 한다.
+* 그래서 해결법은????
+
+### System Components
+* 일반적인 laser triangulation 이런 요소들이 있다.
+  1. height profile을 생산하는 laser
+  2. profile은 scan하는 camera
+  3. 카메라 밑에서 물체를 움직이는 conveyor
+  4. 물체가 존재할 때, 카메라를 가동하는 photo switch
+  5. 컨베이어의 속도에 관계없이, profile이 균일한 거리로 측정되게 하는 encoder
+  6. Smart Camera(내부) 또는 PC(외부)에 설치되어 profile을 수집해 이미지로 만들고 결과를 분석하는 image processing unit
+
+* 일부 레이저 삼각화 장비는 유연성을 위해 각각 따로 구매해 사용합니다. 다른 제품들은 고정된 시야각와 같이 부분적으로 조립되어 있어 사용준비가 더 쉽지만 유연성은 떨어집니다.
+
+### Ambient Light Robustness
+* 레이저는 단색의 빛을 발사하고, 이는 하나의 파장만을 가진다는 뜻입니다.
+* 좁은 band-pass filter를 통해 주변 광의 다른 파장은 억제될 수 있습니다.
+* 어느정도 주변광에 대한 견고함이 있지만 레이저와 비슷한 파장이 주변광에 있으면 필터를 통과하여 이미지의 반사에 악영향을 줍니다.
+* 설치는 covered 또는 shrouded 되야한다.(3장 illumination에서 나온 내용)
+* 일반적으로, 반사와 관련된 문제는 태양광과 spotlight에서 나오는 따뜻한 인공적인 빛에서 비롯됩니다.
+
+## Processing and Analysis
+
+* Chapter 4~5을 디테일하게 6~7은 간단히.
